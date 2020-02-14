@@ -410,6 +410,13 @@ module Azure
       )
     end
 
+    def vm_lists()
+      get(
+        url: "/subscriptions/#{subscription_id}/providers/Microsoft.Compute/virtualMachines",
+         api_version: '2019-07-01',
+      )
+    end
+
     def storage_account(resource_group, name)
       get(
         url: link(location: "Microsoft.Storage/storageAccounts/#{name}",
