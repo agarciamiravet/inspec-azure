@@ -403,6 +403,13 @@ module Azure
       )
     end
 
+    def storage_accounts_lists()
+      get(
+        url: "/subscriptions/#{subscription_id}/providers/Microsoft.Storage/storageAccounts",
+         api_version: '2019-04-01',
+      )
+    end
+
     def storage_account(resource_group, name)
       get(
         url: link(location: "Microsoft.Storage/storageAccounts/#{name}",
