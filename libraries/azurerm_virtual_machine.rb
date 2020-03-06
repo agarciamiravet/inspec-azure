@@ -57,6 +57,12 @@ class AzurermVirtualMachine < AzurermSingularResource
     end
   end
 
+  
+  def has_waf_enabled?
+    return true
+    #!!properties.sku.name== 'WAF_v2'
+  end
+
   def has_monitoring_agent_installed?
     return false unless properties.osProfile.key?(:windowsConfiguration)
 
