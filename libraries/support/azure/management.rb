@@ -42,38 +42,38 @@ def app_gateway(resource_group, name)
   )
 end
 
-#/subscriptions/a1f675b4-f74f-404e-8e2e-348a40cf7477/resourceGroups/rg-roivolution/providers/Microsoft.Web/sites/FunctionsRoivolutionPRO/functions/SynchronizeCompaniesByProductsAndPointsOfSale
 
-#https://management.azure.com/subscriptions/a1f675b4-f74f-404e-8e2e-348a40cf7477/providers/Microsoft.ServiceBus/namespaces?api-version=2017-04-01
-
-#https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}?api-version=2017-04-01
-
-#https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}?api-version=2019-11-01
-
-
-
-  def storage_accounts_lists()
+def storage_accounts_lists()
     get(
       url: "/subscriptions/#{subscription_id}/providers/Microsoft.Storage/storageAccounts",
        api_version: '2019-04-01',
     )
-  end
+end
 
-  def vm_lists()
+def vm_lists()
     get(
       url: "/subscriptions/#{subscription_id}/providers/Microsoft.Compute/virtualMachines",
        api_version: '2019-07-01',
     )
-  end
+end
 
-  def sqlserver_lists()
+def sqlserver_lists()
     get(
       url: "/subscriptions/#{subscription_id}/providers/Microsoft.Sql/servers",
       api_version: '2015-05-01-preview',
     )
-  end
+end
 
-  ###################
+
+def key_vaults_lists()
+  get(
+    url: "/subscriptions/#{subscription_id}/resources?$filter=resourceType eq 'Microsoft.KeyVault/vaults'",
+    api_version: '2019-09-01'
+  )
+end
+
+###################
+
     def activity_log_alert(resource_group, id)
       get(
         url: link(location: 'Microsoft.Insights/activityLogAlerts',
