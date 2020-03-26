@@ -72,6 +72,21 @@ def key_vaults_lists()
   )
 end
 
+def traffic_manager(resource_group, id)
+  get(
+    url: link(location: 'Microsoft.Network/trafficManagerProfiles',
+     resource_group: resource_group) + id,
+    api_version: '2018-04-01',
+  )
+end
+
+def api_management(resource_group, id)
+  get(
+    url: "/subscriptions/#{subscription_id}/resourceGroups/#{resource_group}/providers/Microsoft.ApiManagement/service/#{id}",
+    api_version: '2019-01-01',
+  )
+end
+
 ###################
 
     def activity_log_alert(resource_group, id)
