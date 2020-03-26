@@ -94,6 +94,14 @@ def recovery_service_vault(resource_group, id)
   )
 end
 
+def logic_app(resource_group, id)
+  get(
+    url: link(location: 'Microsoft.Logic/workflows',
+              resource_group: resource_group) + id,
+    api_version: '2015-08-01-preview',
+  )
+end
+
 ###################
 
     def activity_log_alert(resource_group, id)
