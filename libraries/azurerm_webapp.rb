@@ -16,6 +16,7 @@ class AzurermWebapp < AzurermSingularResource
     id
     location
     identity
+    kind
     properties
   ).freeze
 
@@ -68,6 +69,21 @@ class AzurermWebapp < AzurermSingularResource
     identity.is_a?(Struct)
   end
 
+  def has_location_west_europe?
+    if location == 'West Europe'
+      return true
+    else
+      return false 
+    end
+  end
+
+  def azure_function?
+    if kind == "functionapp"
+      return true
+    end
+    return false
+  end
+
   private
 
   def latest(stack)
@@ -81,4 +97,5 @@ class AzurermWebapp < AzurermSingularResource
   def supported_stacks
     @supported_stacks ||= management.webapp_supported_stacks
   end
+
 end

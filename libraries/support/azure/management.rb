@@ -12,6 +12,83 @@ module Azure
       @page_link_name = 'nextLink'
     end
 
+  #########All lists################
+
+def azure_function(resource_group, web_site, name)
+  get(
+    url: "/subscriptions/#{subscription_id}/resourceGroups/#{resource_group}/providers/Microsoft.Web/sites/#{web_site}/functions/#{name}",
+    api_version: '2018-02-01',
+  )
+end
+
+def service_bus_namespace_lists()
+  get(
+    url: "/subscriptions/#{subscription_id}/providers/Microsoft.ServiceBus/namespaces",
+    api_version: '2017-04-01',
+  )
+end
+
+def service_bus_namespace(resource_group, name)
+  get(
+    url: "/subscriptions/#{subscription_id}/resourceGroups/#{resource_group}/providers/Microsoft.ServiceBus/namespaces/#{name}",
+    api_version: '2017-04-01',
+  )
+end
+
+def app_gateway(resource_group, name)
+  get(
+    url: "/subscriptions/#{subscription_id}/resourceGroups/#{resource_group}/providers/Microsoft.Network/applicationGateways/#{name}",
+    api_version: '2019-11-01',
+  )
+end
+
+
+def storage_accounts_lists()
+    get(
+      url: "/subscriptions/#{subscription_id}/providers/Microsoft.Storage/storageAccounts",
+       api_version: '2019-04-01',
+    )
+end
+
+def vm_lists()
+    get(
+      url: "/subscriptions/#{subscription_id}/providers/Microsoft.Compute/virtualMachines",
+       api_version: '2019-07-01',
+    )
+end
+
+def sqlserver_lists()
+    get(
+      url: "/subscriptions/#{subscription_id}/providers/Microsoft.Sql/servers",
+      api_version: '2015-05-01-preview',
+    )
+end
+
+
+def key_vaults_lists()
+  get(
+    url: "/subscriptions/#{subscription_id}/resources?$filter=resourceType eq 'Microsoft.KeyVault/vaults'",
+    api_version: '2019-09-01'
+  )
+end
+
+def traffic_manager(resource_group, id)
+  get(
+    url: link(location: 'Microsoft.Network/trafficManagerProfiles',
+     resource_group: resource_group) + id,
+    api_version: '2018-04-01',
+  )
+end
+
+def api_management(resource_group, id)
+  get(
+    url: "/subscriptions/#{subscription_id}/resourceGroups/#{resource_group}/providers/Microsoft.ApiManagement/service/#{id}",
+    api_version: '2019-01-01',
+  )
+end
+
+###################
+
     def activity_log_alert(resource_group, id)
       get(
         url: link(location: 'Microsoft.Insights/activityLogAlerts',
@@ -37,7 +114,8 @@ module Azure
     def aks_cluster(resource_group, id)
       get(
         url: link(location: 'Microsoft.ContainerService/managedClusters',
-                  resource_group: resource_group) + id,
+      
+         resource_group: resource_group) + id,
         api_version: '2018-03-31',
       )
     end

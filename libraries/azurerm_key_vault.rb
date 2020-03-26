@@ -36,6 +36,22 @@ class AzurermKeyVault < AzurermSingularResource
     @diagnostic_settings ||= management.key_vault_diagnostic_settings(id)
   end
 
+  def has_standard_tier? 
+    if properties.sku.name.downcase == 'standard'
+      return true
+    else
+      return false 
+    end
+  end
+
+  def has_location_west_europe?
+    if location.downcase == 'westeurope'
+      return true
+    else
+      return false 
+    end
+  end
+
   def to_s
     "Azure Key Vault: '#{name}'"
   end
