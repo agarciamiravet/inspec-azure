@@ -87,6 +87,13 @@ def api_management(resource_group, id)
   )
 end
 
+def recovery_service_vault(resource_group, id)
+  get(
+    url: "/subscriptions/#{subscription_id}/resourceGroups/#{resource_group}/providers/Microsoft.RecoveryServices/vaults/#{id}",
+    api_version: '2016-06-01',
+  )
+end
+
 ###################
 
     def activity_log_alert(resource_group, id)
