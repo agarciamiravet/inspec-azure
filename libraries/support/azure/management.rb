@@ -102,6 +102,22 @@ def logic_app(resource_group, id)
   )
 end
 
+def app_insight(resource_group, id)
+  get(
+    url: link(location: 'microsoft.insights/components',
+              resource_group: resource_group) + id,
+              api_version: '2015-05-01',
+  )
+end
+
+def container_registry(resource_group, id)
+  get(
+    url: link(location: 'Microsoft.ContainerRegistry/registries',
+              resource_group: resource_group) + id,
+              api_version: '2019-05-01',
+  )
+end
+
 ###################
 
     def activity_log_alert(resource_group, id)
